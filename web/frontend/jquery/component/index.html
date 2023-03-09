@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      /**
+       * A stateless component
+       */
+      $.fn.stateless = function ({ value, onUpdate }) {
+        this.prop('prop-value', value);
+
+        if (this.prop('created')) {
+          this.prop('outlet-result').text(`Result is ${value}`);
+          return;
+        }
+
+        this.prop('created', true);
+        this.empty();
+
+        const result = $('<div />').text(`Result is ${value}`);
+
+        this.prop('outlet-result', result);
+
+        const view = this;
+
+        return this.append(
+          result,
+          $('<button />')
+            .text('+')
+            // event handlers are only registered once, but the prop value
+            // will change in the future. So we have to use prop() to get the
+            // latest prop
+            .on('click', function () {
+              onUpdate(view.prop('prop-value') + 1);
+            }),
+          $('<button />')
+            .text('-')
+            .on('click', function () {
+              onUpdate(view.prop('prop-value') - 1);
+            })
+        );
+      };
+
+      /**
+       * A stateful component
+       *
+       * For stateful manage its state using values captured by the function/closure
+       */
+      $.fn.stateful = function (state) {
+        this.stateless({
+          value: state.value,
+          onUpdate: (newValue) => {
+            state.value = newValue;
+            this.stateless({ value: state.value });
+          },
+        });
+      };
+
+      $(() => {
+        $('#view-controller-0').stateful({ value: 0 });
+        $('#view-controller-1').stateful({ value: 10 });
+      });
+    </script>
+    <!--each of these view controlelrs manages their won separate states-->
+    <div id="view-controller-0"></div>
+    <div id="view-controller-1"></div>
+  </body>
+</html>

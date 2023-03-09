@@ -1,0 +1,11 @@
+.DS_Store
+.vscode/
+.vs/
+node_modules/
+
+__pycache__/
+*.egg-info/
+
+bin
+obj
+cdk.out

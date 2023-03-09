@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		67633EAC27E1444400BE36F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EAB27E1444400BE36F1 /* AppDelegate.swift */; };
+		67633EAE27E1444400BE36F1 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EAD27E1444400BE36F1 /* SplitViewController.swift */; };
+		67633EB027E1444400BE36F1 /* BookDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EAF27E1444400BE36F1 /* BookDocument.swift */; };
+		67633EB227E1444500BE36F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67633EB127E1444500BE36F1 /* Assets.xcassets */; };
+		67633EB527E1444500BE36F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67633EB327E1444500BE36F1 /* Main.storyboard */; };
+		67633EBF27E1482900BE36F1 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EBE27E1482900BE36F1 /* Book.swift */; };
+		67633EC327E14CBF00BE36F1 /* ChaptersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EC227E14CBF00BE36F1 /* ChaptersViewController.swift */; };
+		67633EC627E1706A00BE36F1 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67633EC427E1706A00BE36F1 /* WelcomeViewController.swift */; };
+		67786B2927E415E3002B98EB /* ChapterDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67786B2827E415E3002B98EB /* ChapterDocument.swift */; };
+		67786B2B27E43C89002B98EB /* ChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67786B2A27E43C89002B98EB /* ChapterViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		67633EA827E1444400BE36F1 /* Book Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67633EAB27E1444400BE36F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		67633EAD27E1444400BE36F1 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		67633EAF27E1444400BE36F1 /* BookDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDocument.swift; sourceTree = "<group>"; };
+		67633EB127E1444500BE36F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		67633EB427E1444500BE36F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		67633EB627E1444500BE36F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67633EB727E1444500BE36F1 /* BookMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookMaker.entitlements; sourceTree = "<group>"; };
+		67633EBE27E1482900BE36F1 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		67633EC227E14CBF00BE36F1 /* ChaptersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChaptersViewController.swift; sourceTree = "<group>"; };
+		67633EC427E1706A00BE36F1 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		67786B2827E415E3002B98EB /* ChapterDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterDocument.swift; sourceTree = "<group>"; };
+		67786B2A27E43C89002B98EB /* ChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67633EA527E1444400BE36F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67633E9F27E1444400BE36F1 = {
+			isa = PBXGroup;
+			children = (
+				67633EAA27E1444400BE36F1 /* BookMaker */,
+				67633EA927E1444400BE36F1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		67633EA927E1444400BE36F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67633EA827E1444400BE36F1 /* Book Maker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67633EAA27E1444400BE36F1 /* BookMaker */ = {
+			isa = PBXGroup;
+			children = (
+				67786B2C27EBE839002B98EB /* ViewControllers */,
+				67633EBD27E1480800BE36F1 /* Models */,
+				67633EAB27E1444400BE36F1 /* AppDelegate.swift */,
+				67633EB127E1444500BE36F1 /* Assets.xcassets */,
+				67633EB327E1444500BE36F1 /* Main.storyboard */,
+				67633EB627E1444500BE36F1 /* Info.plist */,
+				67633EB727E1444500BE36F1 /* BookMaker.entitlements */,
+			);
+			path = BookMaker;
+			sourceTree = "<group>";
+		};
+		67633EBD27E1480800BE36F1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				67633EBE27E1482900BE36F1 /* Book.swift */,
+				67633EAF27E1444400BE36F1 /* BookDocument.swift */,
+				67786B2827E415E3002B98EB /* ChapterDocument.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		67786B2C27EBE839002B98EB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67633EAD27E1444400BE36F1 /* SplitViewController.swift */,
+				67633EC227E14CBF00BE36F1 /* ChaptersViewController.swift */,
+				67786B2A27E43C89002B98EB /* ChapterViewController.swift */,
+				67633EC427E1706A00BE36F1 /* WelcomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67633EA727E1444400BE36F1 /* BookMaker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67633EBA27E1444500BE36F1 /* Build configuration list for PBXNativeTarget "BookMaker" */;
+			buildPhases = (
+				67633EA427E1444400BE36F1 /* Sources */,
+				67633EA527E1444400BE36F1 /* Frameworks */,
+				67633EA627E1444400BE36F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookMaker;
+			productName = RelatedItemExample;
+			productReference = 67633EA827E1444400BE36F1 /* Book Maker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67633EA027E1444400BE36F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					67633EA727E1444400BE36F1 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = 67633EA327E1444400BE36F1 /* Build configuration list for PBXProject "BookMaker" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 67633E9F27E1444400BE36F1;
+			productRefGroup = 67633EA927E1444400BE36F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67633EA727E1444400BE36F1 /* BookMaker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67633EA627E1444400BE36F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67633EB227E1444500BE36F1 /* Assets.xcassets in Resources */,
+				67633EB527E1444500BE36F1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67633EA427E1444400BE36F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67633EBF27E1482900BE36F1 /* Book.swift in Sources */,
+				67633EC327E14CBF00BE36F1 /* ChaptersViewController.swift in Sources */,
+				67633EAE27E1444400BE36F1 /* SplitViewController.swift in Sources */,
+				67633EAC27E1444400BE36F1 /* AppDelegate.swift in Sources */,
+				67633EB027E1444400BE36F1 /* BookDocument.swift in Sources */,
+				67786B2927E415E3002B98EB /* ChapterDocument.swift in Sources */,
+				67633EC627E1706A00BE36F1 /* WelcomeViewController.swift in Sources */,
+				67786B2B27E43C89002B98EB /* ChapterViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		67633EB327E1444500BE36F1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67633EB427E1444500BE36F1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		67633EB827E1444500BE36F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		67633EB927E1444500BE36F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		67633EBB27E1444500BE36F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookMaker/BookMaker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SYDGB25RXW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BookMaker/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zehuachen-examples.BookMaker";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "Book Maker";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		67633EBC27E1444500BE36F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookMaker/BookMaker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SYDGB25RXW;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BookMaker/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zehuachen-examples.BookMaker";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "Book Maker";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67633EA327E1444400BE36F1 /* Build configuration list for PBXProject "BookMaker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67633EB827E1444500BE36F1 /* Debug */,
+				67633EB927E1444500BE36F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67633EBA27E1444500BE36F1 /* Build configuration list for PBXNativeTarget "BookMaker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67633EBB27E1444500BE36F1 /* Debug */,
+				67633EBC27E1444500BE36F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 67633EA027E1444400BE36F1 /* Project object */;
+}
