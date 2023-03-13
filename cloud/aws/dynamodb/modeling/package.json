@@ -3,8 +3,5 @@
   "scripts": {
     "synth": "cdk synth",
     "build": "gulp build"
-  },
-  "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.238.0"
   }
 }
