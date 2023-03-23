@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "development",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "TRUE"
+      }
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "development"
+    }
+  ]
+}

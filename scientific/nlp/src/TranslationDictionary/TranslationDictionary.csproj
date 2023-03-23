@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NLP</RootNamespace>
+  </PropertyGroup>
+
+  <!--Resources-->
+  <ItemGroup>
+    <EmbeddedResource Include="Data/AlienLanguage.json"></EmbeddedResource>
+  </ItemGroup>
+</Project>
