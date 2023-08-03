@@ -1,6 +1,7 @@
 ﻿@page
-@model Forms.Pages.PeopleModel
+@model Forms.Pages.AddAndDelete
 @{
+    ViewData["Title"] = "Add and delete";
 }
 
 <div class="container">
@@ -48,7 +49,8 @@
         <div class="col">
             <h1>Delete Person</h1>
 
-            @if (Model.IsDeletionSuccessful) {
+            @if (Model.IsDeletionSuccessful)
+            {
                 <div>@Model.PersonIdToDelete deletion successful</div>
             }
 
