@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Forms.Models;
 
 namespace Forms.Pages
 {
-	public class PeopleModel : PageModel
+	public class AddAndDelete : PageModel
     {
-        private ILogger<PeopleModel> _logger;
+        private ILogger<AddAndDelete> _logger;
 
         public bool IsAdditionSuccessful { get; set; } = false;
         public bool IsDeletionSuccessful { get; set; } = false;
@@ -23,7 +19,7 @@ namespace Forms.Pages
         [Required]
         public string PersonIdToDelete { get; set; } = "";
 
-        public PeopleModel(ILogger<PeopleModel> logger)
+        public AddAndDelete(ILogger<AddAndDelete> logger)
         {
             _logger = logger;
         }
