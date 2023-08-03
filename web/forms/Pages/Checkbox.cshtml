@@ -1,0 +1,32 @@
+﻿@page
+@model Forms.Pages.CheckboxModel
+@{
+    ViewData["Title"] = "Checkbox";
+}
+
+<div class="container">
+    <div class="row">
+        <div>
+            @Model.Message
+        </div>
+        <form asp-page-handler="Submit">
+            @foreach (var attribute in Model.AvailableAttributes)
+            {
+                <div>
+                    <input
+                        type="checkbox"
+                        id="@(attribute)"
+                        name="@nameof(Model.SelectedAttributes)"
+                        value="@(attribute)"
+                        @if (Model.IsAttributeSelected(attribute))
+                        {
+                            @:checked
+                        }
+                    />
+                    <label for="@(attribute)">@(attribute)</label>
+                </div>
+            }
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
