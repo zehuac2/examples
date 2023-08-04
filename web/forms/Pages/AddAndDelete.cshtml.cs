@@ -36,6 +36,7 @@ namespace Forms.Pages
             {
                 return new Person()
                 {
+                    ID = ID,
                     Name = Name,
                     Age = Age,
                     IsAlive = IsAlive,
@@ -60,11 +61,6 @@ namespace Forms.Pages
 
             private readonly List<Person> _people = new();
 
-            public Database()
-            {
-                Console.WriteLine("Database::Database()");
-            }
-
             public void AddPerson(Person person)
             {
                 lock(this)
@@ -73,8 +69,6 @@ namespace Forms.Pages
                 }
             }
         }
-
-        private readonly ILogger<AddAndDelete> _logger;
 
         public bool IsAdditionSuccessful { get; set; } = false;
         public bool IsDeletionSuccessful { get; set; } = false;
@@ -96,9 +90,8 @@ namespace Forms.Pages
 
         private readonly Database _database;
 
-        public AddAndDelete(ILogger<AddAndDelete> logger, Database database)
+        public AddAndDelete(Database database)
         {
-            _logger = logger;
             _database = database;
         }
 
@@ -106,7 +99,7 @@ namespace Forms.Pages
         {
         }
 
-        public ActionResult OnPostPerson()
+        public ActionResult OnPostCreatePerson()
         {
             Reset();
 
@@ -125,7 +118,7 @@ namespace Forms.Pages
 
         public ActionResult OnPostDeletePerson(int id)
         {
-            return Page();
+            return Redirect("./Index");
         }
 
         private void Reset()
