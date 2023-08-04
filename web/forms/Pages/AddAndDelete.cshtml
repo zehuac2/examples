@@ -19,6 +19,24 @@
 
     <div class="row">
         <div class="col">
+            <ul class="list-group">
+                @foreach (var person in Model.People)
+                {
+                    <li class="list-group-item">
+                        <div>
+                            Name: @person.Name, Age: @person.Age, Is alive: @person.IsAlive
+                        </div>
+                        <form>
+                            <button class="btn btn-danger" type="submit" asp-page-handler="DeletePerson" asp-route-id="@person.ID">Delete</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
             <h1>New Person</h1>
 
             @if (Model.IsAdditionSuccessful)
@@ -41,27 +59,6 @@
                 <input asp-for="NewPerson.IsAlive" type="hidden" value="true" />
 
                 <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <h1>Delete Person</h1>
-
-            @if (Model.IsDeletionSuccessful)
-            {
-                <div>@Model.PersonIdToDelete deletion successful</div>
-            }
-
-            <form method="post" asp-page-handler="DeletePerson">
-                <div>
-                    <label class="form-label" asp-for="PersonIdToDelete">Person ID</label>
-                    <input class="form-control" asp-for="PersonIdToDelete" />
-                    <span asp-validation-for="PersonIdToDelete"></span>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Delete</button>
             </form>
         </div>
     </div>

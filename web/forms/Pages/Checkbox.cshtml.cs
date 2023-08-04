@@ -13,7 +13,6 @@ namespace Forms.Pages
             Female
         }
 
-        [BindProperty]
         public Attribute[] AvailableAttributes
         {
             get
@@ -22,7 +21,6 @@ namespace Forms.Pages
             }
         }
 
-        [BindProperty]
         public string Message
         {
             get
@@ -64,8 +62,9 @@ namespace Forms.Pages
             return _selectedAttributes.Contains(attribute);
         }
 
-        public void OnPostSubmit()
+        public IActionResult OnPost()
         {
+            return Page();
         }
     }
 }

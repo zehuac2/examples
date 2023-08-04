@@ -1,13 +1,80 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Forms.Models;
 
 namespace Forms.Pages
 {
 	public class AddAndDelete : PageModel
     {
-        private ILogger<AddAndDelete> _logger;
+        public class Person : ICloneable
+        {
+            private readonly static object _nextIdLock = new object();
+            private static int _nextId = 0;
+
+            public static int GetNewID()
+            {
+                lock(_nextIdLock)
+                {
+                    return _nextId++;
+                }
+            }
+
+            public int ID { get; set; } = 0;
+            
+            [Required]
+            public string Name { get; set; } = "test";
+
+            [Required]
+            [Range(1, 150)]
+            public int Age { get; set; } = 1;
+
+            // Initialize to false to demonstrate hidden input
+            [Required]
+            public bool IsAlive { get; set; } = false;
+
+            public object Clone()
+            {
+                return new Person()
+                {
+                    Name = Name,
+                    Age = Age,
+                    IsAlive = IsAlive,
+                };
+            }
+
+            public override string ToString()
+            {
+                return $"Person(Name={Name}, Age={Age}, IsAlive={IsAlive})";
+            }
+        }
+
+        public sealed class Database
+        {
+            public IReadOnlyList<Person> People
+            {
+                get
+                {
+                    return _people;
+                }
+            }
+
+            private readonly List<Person> _people = new();
+
+            public Database()
+            {
+                Console.WriteLine("Database::Database()");
+            }
+
+            public void AddPerson(Person person)
+            {
+                lock(this)
+                {
+                    _people.Add(person);
+                }
+            }
+        }
+
+        private readonly ILogger<AddAndDelete> _logger;
 
         public bool IsAdditionSuccessful { get; set; } = false;
         public bool IsDeletionSuccessful { get; set; } = false;
@@ -15,13 +82,24 @@ namespace Forms.Pages
         [BindProperty]
         public Person NewPerson { get; set; } = new();
 
+        public IReadOnlyList<Person> People
+        {
+            get
+            {
+                return _database.People;
+            }
+        }
+
         [BindProperty]
         [Required]
         public string PersonIdToDelete { get; set; } = "";
 
-        public AddAndDelete(ILogger<AddAndDelete> logger)
+        private readonly Database _database;
+
+        public AddAndDelete(ILogger<AddAndDelete> logger, Database database)
         {
             _logger = logger;
+            _database = database;
         }
 
         public void OnGet()
@@ -37,30 +115,16 @@ namespace Forms.Pages
                 return Page();
             }
 
-            _logger.LogInformation(NewPerson.ToString());
+            NewPerson.ID = Person.GetNewID();
+
+            _database.AddPerson((Person) NewPerson.Clone());
             IsAdditionSuccessful = true;
 
             return Page();
         }
 
-        public ActionResult OnPostDeletePerson()
+        public ActionResult OnPostDeletePerson(int id)
         {
-            Reset();
-
-            if (PersonIdToDelete == null)
-            {
-                ModelState.TryAddModelError(nameof(PersonIdToDelete), "Person Id cannot be empty");
-                return Page();
-            }
-
-            if (!TryValidateModel(PersonIdToDelete, nameof(PersonIdToDelete)))
-            {
-                return Page();
-            }
-
-            _logger.LogInformation($"Person with id {PersonIdToDelete} deleted");
-            IsDeletionSuccessful = true;
-
             return Page();
         }
 

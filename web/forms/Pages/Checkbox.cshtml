@@ -9,7 +9,7 @@
         <div>
             @Model.Message
         </div>
-        <form asp-page-handler="Submit">
+        <form method="post">
             @foreach (var attribute in Model.AvailableAttributes)
             {
                 <div>

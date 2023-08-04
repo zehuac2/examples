@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<Forms.Pages.AddAndDelete.Database>();
+
 // Add services to the container.
 IMvcBuilder mvcBuilder = builder.Services.AddRazorPages();
 
