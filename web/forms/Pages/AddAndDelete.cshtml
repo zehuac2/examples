@@ -27,7 +27,15 @@
                             Name: @person.Name, Age: @person.Age, Is alive: @person.IsAlive
                         </div>
                         <form>
-                            <button class="btn btn-danger" type="submit" asp-page-handler="DeletePerson" asp-route-id="@person.ID">Delete</button>
+                            <button
+                                class="btn btn-danger"
+                                type="submit"
+                                formmethod="post"
+                                asp-page-handler="DeletePerson"
+                                asp-route-id="@person.ID"
+                            >
+                                Delete
+                            </button>
                         </form>
                     </li>
                 }
@@ -44,7 +52,7 @@
                 <div>@Model.NewPerson.Name addition successful</div>
             }
 
-            <form method="post" asp-page-handler="Person">
+            <form method="post" asp-page-handler="CreatePerson">
                 <div class="mb-3">
                     <label class="form-label" asp-for="NewPerson.Name">Name</label>
                     <input class="form-control" asp-for="NewPerson.Name" />
