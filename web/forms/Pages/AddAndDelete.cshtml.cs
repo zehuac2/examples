@@ -8,15 +8,18 @@ namespace Forms.Pages
     {
         public class Person : ICloneable
         {
-            private readonly static object _nextIdLock = new object();
+            private readonly static SemaphoreSlim _nextIdSemaphore = new(1);
             private static int _nextId = 0;
 
-            public static int GetNewID()
+            public static async ValueTask<int> GetNewID()
             {
-                lock(_nextIdLock)
-                {
-                    return _nextId++;
-                }
+                await _nextIdSemaphore.WaitAsync();
+
+                int nextId = _nextId++;
+
+                _nextIdSemaphore.Release();
+
+                return nextId;
             }
 
             public int ID { get; set; } = 0;
@@ -49,7 +52,7 @@ namespace Forms.Pages
             }
         }
 
-        public sealed class Database
+        public sealed class Database: IDisposable
         {
             public IReadOnlyList<Person> People
             {
@@ -59,19 +62,34 @@ namespace Forms.Pages
                 }
             }
 
+            private readonly SemaphoreSlim _semaphore = new(1);
             private readonly List<Person> _people = new();
 
-            public void AddPerson(Person person)
+            public async ValueTask AddPerson(Person person)
             {
-                lock(this)
-                {
-                    _people.Add(person);
-                }
+                await _semaphore.WaitAsync();
+
+                _people.Add(person);
+
+                _semaphore.Release();
+            }
+
+            public async ValueTask DeletePerson(int id)
+            {
+                await _semaphore.WaitAsync();
+
+                _people.RemoveAll(person => person.ID == id);
+
+                _semaphore.Release();
+            }
+
+            public void Dispose()
+            {
+                _semaphore.Dispose();
             }
         }
 
         public bool IsAdditionSuccessful { get; set; } = false;
-        public bool IsDeletionSuccessful { get; set; } = false;
 
         [BindProperty]
         public Person NewPerson { get; set; } = new();
@@ -99,7 +117,7 @@ namespace Forms.Pages
         {
         }
 
-        public ActionResult OnPostCreatePerson()
+        public async Task<IActionResult> OnPostCreatePerson()
         {
             Reset();
 
@@ -108,24 +126,24 @@ namespace Forms.Pages
                 return Page();
             }
 
-            NewPerson.ID = Person.GetNewID();
+            NewPerson.ID = await Person.GetNewID();
 
-            _database.AddPerson((Person) NewPerson.Clone());
+            await _database.AddPerson((Person) NewPerson.Clone());
             IsAdditionSuccessful = true;
 
             return Page();
         }
 
-        public ActionResult OnPostDeletePerson(int id)
+        public async Task<IActionResult> OnPostDeletePerson(int id)
         {
-            return Redirect("./Index");
+            await _database.DeletePerson(id);
+            return Page();
         }
 
         private void Reset()
         {
             ModelState.Clear();
 
-            IsDeletionSuccessful = false;
             IsAdditionSuccessful = false;
         }
     }

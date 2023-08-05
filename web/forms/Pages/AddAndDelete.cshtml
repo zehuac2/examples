@@ -26,11 +26,10 @@
                         <div>
                             Name: @person.Name, Age: @person.Age, Is alive: @person.IsAlive
                         </div>
-                        <form>
+                        <form method="post">
                             <button
                                 class="btn btn-danger"
                                 type="submit"
-                                formmethod="post"
                                 asp-page-handler="DeletePerson"
                                 asp-route-id="@person.ID"
                             >
