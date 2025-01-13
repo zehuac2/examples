@@ -6,7 +6,7 @@
 //
 
 import GameplayKit
-import MetalMath
+import Spatial
 import simd
 
 final class Transform: GKComponent {
@@ -14,7 +14,11 @@ final class Transform: GKComponent {
   var position: SIMD3<Float32> = [0, 0, 0]
 
   var matrix: float4x4 {
-    return .translate(position) * .scale(scale)
+    let transform = AffineTransform3D.identity
+      .translated(by: Vector3D(x: position.x, y: position.y, z: position.z))
+      .scaled(by: Size3D(width: scale.x, height: scale.y, depth: scale.z))
+
+    return float4x4(transform)
   }
 
   required init?(coder: NSCoder) {
