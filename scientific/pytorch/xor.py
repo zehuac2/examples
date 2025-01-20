@@ -47,6 +47,8 @@ def main():
     args = parse_args()
     device = torch.device(args.device)
 
+    print(f"Training on device {device}")
+
     torch.random.manual_seed(0)
     model = XORModel()
     model.to(device)
