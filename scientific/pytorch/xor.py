@@ -1,7 +1,6 @@
-"""Demonstrate the use of MPS (Metal Performance Shader) backend in Pytorch.
-"""
 import torch
 import torch.nn.functional as F
+import argparse
 
 
 class XORModel(torch.nn.Module):
@@ -35,22 +34,29 @@ def train(model, data, labels, epochs=1000, lr=0.01):
         if (epoch + 1) % 100 == 0:
             print(f'Epoch [{epoch + 1}/{epochs}], Loss: {loss.item():.4f}')
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='XOR Neural Network')
+    parser.add_argument(
+        '--device',
+        type=str,
+        default='cpu',
+        help='Device to run on (cpu, cuda, mps)')
+    return parser.parse_args()
+
 def main():
+    args = parse_args()
+    device = torch.device(args.device)
+
     torch.random.manual_seed(0)
     model = XORModel()
-    model.to("mps")
+    model.to(device)
     data, labels = generate_data()
-    data, labels = data.to("mps"), labels.to("mps")
+    data, labels = data.to(device), labels.to(device)
     train(model, data, labels)
 
     model.eval()
-
     eval_labels = model(data)
     print(eval_labels)
 
 if __name__ == "__main__":
-    if torch.backends.mps.is_available():
-        print("MPS is available")
-        main()
-    else:
-        print("MPS is not available")
+    main()
