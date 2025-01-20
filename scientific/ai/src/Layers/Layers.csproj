@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <RootNamespace>AI.Layers</RootNamespace>
-  </PropertyGroup>
-
-</Project>
