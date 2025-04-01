@@ -1,3 +1,5 @@
+/// https://www.swift.org/blog/pack-iteration/
+
 protocol PlanItem {
   var total: Int { get }
 }
