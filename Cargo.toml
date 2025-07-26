@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = ["rust/number-system"]
+
+[workspace.package]
+edition = "2021"
+authors = ["Zehua Chen"]
+license = "MIT"
