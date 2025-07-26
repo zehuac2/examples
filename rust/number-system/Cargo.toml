@@ -1,0 +1,12 @@
+[package]
+name = "number-system"
+version = "0.1.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "number-system"
+path = "src/main.rs"
+
+[dependencies]
