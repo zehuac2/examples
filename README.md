@@ -9,3 +9,4 @@ All of my example code
 ## Table of Content
 
 - [Number System](rust/number-system/README.md)
+- [Newton's Method](rust/newtons-method/README.md)
