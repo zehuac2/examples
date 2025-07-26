@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "event-sourcing"
+version = "0.1.0"
+
+[[package]]
 name = "newtons-method"
 version = "0.1.0"
 
