@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["rust/number-system", "rust/newtons-method"]
+members = ["rust/number-system", "rust/newtons-method", "rust/event-sourcing"]
 
 [workspace.package]
 edition = "2021"
