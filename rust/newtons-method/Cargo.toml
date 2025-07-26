@@ -1,0 +1,12 @@
+[package]
+name = "newtons-method"
+version = "0.1.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "newtons-method"
+path = "src/main.rs"
+
+[dependencies]
