@@ -6,12 +6,10 @@
   </Configurations>
   <Folder Name="/src/">
     <Project Path="src/Graph/Graph.csproj" />
-    <Project Path="src/Set/Set.csproj" />
     <Project Path="src/String/String.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Graph.Tests/Graph.Tests.csproj" />
-    <Project Path="tests/Set.Tests/Set.Tests.csproj" />
     <Project Path="tests/String.Tests/String.Tests.csproj" />
   </Folder>
 </Solution>
