@@ -1,16 +1,6 @@
+use event_sourcing::Transaction;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
-
-struct Transaction {
-    id: usize,
-    amount: f32,
-}
-
-impl Transaction {
-    fn new(id: usize, amount: f32) -> Self {
-        Transaction { id, amount }
-    }
-}
 
 fn main() {
     let (tx, rx) = std::sync::mpsc::channel();
