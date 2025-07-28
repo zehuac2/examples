@@ -1,11 +1,6 @@
 import unittest
-import sys
-import os
 
-# Add the parent directory to the path to import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from string.in_language_star import is_in_language_star_recursive, is_in_language_star_iterative
+from in_language_star import is_in_language_star_recursive, is_in_language_star_iterative
 
 
 class TestInLanguageStar(unittest.TestCase):

@@ -1,13 +1,8 @@
 import unittest
-import sys
-import os
 
-# Add the parent directory to the path to import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from graph.directed_graph import DirectedGraph
-from graph.dijkstra import dijkstra
-from graph.varying_edge import VaryingEdge
+from directed_graph import DirectedGraph
+from dijkstra import dijkstra
+from varying_edge import VaryingEdge
 
 
 class Edge(VaryingEdge):

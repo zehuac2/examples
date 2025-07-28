@@ -1,12 +1,7 @@
 import unittest
-import sys
-import os
 
-# Add the parent directory to the path to import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from graph.directed_graph import DirectedGraph
-from graph.scc import get_sccs
+from directed_graph import DirectedGraph
+from scc import get_sccs
 
 
 class TestSCC(unittest.TestCase):

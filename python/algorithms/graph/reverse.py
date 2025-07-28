@@ -1,5 +1,5 @@
 from typing import TypeVar
-from .directed_graph import DirectedGraph
+from directed_graph import DirectedGraph
 
 TVertex = TypeVar('TVertex')
 TEdge = TypeVar('TEdge')

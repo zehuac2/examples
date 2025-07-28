@@ -1,12 +1,7 @@
 import unittest
-import sys
-import os
 
-# Add the parent directory to the path to import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from graph.directed_graph import DirectedGraph
-from graph.reverse import get_reverse
+from directed_graph import DirectedGraph
+from reverse import get_reverse
 
 
 class TestReverse(unittest.TestCase):

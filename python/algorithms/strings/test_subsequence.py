@@ -1,11 +1,6 @@
 import unittest
-import sys
-import os
 
-# Add the parent directory to the path to import the modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from string.subsequence import longest_increasing_subsequence_recursive
+from subsequence import longest_increasing_subsequence_recursive
 
 
 class TestSubsequence(unittest.TestCase):
