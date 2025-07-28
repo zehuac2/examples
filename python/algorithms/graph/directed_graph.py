@@ -1,6 +1,5 @@
-from typing import TypeVar, Generic, Dict, Iterator, List, Tuple
+from typing import TypeVar, Generic, Dict, Iterator
 from dataclasses import dataclass, field
-import copy
 
 TVertex = TypeVar('TVertex')
 TEdge = TypeVar('TEdge')

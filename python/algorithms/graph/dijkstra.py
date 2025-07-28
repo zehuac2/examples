@@ -1,6 +1,6 @@
 from typing import TypeVar, Dict, Tuple
-from .directed_graph import DirectedGraph
-from .varying_edge import VaryingEdge
+from directed_graph import DirectedGraph
+from varying_edge import VaryingEdge
 
 TVertex = TypeVar('TVertex')
 TEdge = TypeVar('TEdge', bound=VaryingEdge)

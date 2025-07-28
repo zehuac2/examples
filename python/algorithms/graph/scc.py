@@ -1,6 +1,6 @@
 from typing import TypeVar, Set
-from .directed_graph import DirectedGraph
-from .reverse import get_reverse
+from directed_graph import DirectedGraph
+from reverse import get_reverse
 
 TVertex = TypeVar('TVertex')
 TEdge = TypeVar('TEdge')
