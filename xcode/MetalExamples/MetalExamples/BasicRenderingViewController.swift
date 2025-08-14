@@ -9,9 +9,9 @@ import AppKit
 import Foundation
 import GameplayKit
 import Metal
+import MetalExamplesKit
 import MetalKit
 import MetalMath
-import SampleKit
 
 extension simd_float4x4 {
   @inlinable

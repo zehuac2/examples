@@ -1,11 +1,10 @@
 //
-//  BasicRenderingApp.swift
-//  BasicRendering
+//  MetalExamplesApp.swift
+//  MetalExamples
 //
-//  Created by Zehua Chen on 5/20/21.
+//  Created by Zehua Chen on 8/13/25.
 //
 
-import AppKit
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @main
-struct BasicRenderingApp: App {
+struct MetalExamplesApp: App {
   @NSApplicationDelegateAdaptor
   var delegate: AppDelegate
 
