@@ -7,9 +7,9 @@
 
 import GameplayKit
 import Metal
+import MetalExamplesKit
 import MetalKit
 import ModelIO
-import SampleKit
 
 final class MeshRenderer: GKComponent {
   var mesh: MDLMesh?
