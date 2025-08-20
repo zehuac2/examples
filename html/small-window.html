@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Small Window</title>
+  </head>
+  <body>
+    <script>
+      function openSmallWindow(target) {
+        const smallWindow = window.open('', target, 'width=400,height=300');
+        smallWindow.document.write('Hello world');
+      }
+    </script>
+    <div>
+      <button onclick="openSmallWindow('_blank')">Open '_blank'</button>
+      <p>
+        <strong>_blank</strong> opens a new browsing context — usually a new tab
+        or window depending on browser and user settings. Each call with
+        <code>_blank</code> creates a new context unless you reuse a named
+        target. For security, add <code>rel="noopener noreferrer"</code> to
+        links or set <code>openedWindow.opener = null</code> so the new page
+        cannot access <code>window.opener</code>.
+      </p>
+    </div>
+
+    <div>
+      <button onclick="openSmallWindow('_parent')">Open '_parent'</button>
+      <p>
+        <strong>_parent</strong> loads the URL into the immediate parent of the
+        current browsing context (the containing frame). If there is no parent
+        (top-level), <code>_parent</code> behaves like <code>_self</code> and
+        replaces the current document.
+      </p>
+    </div>
+
+    <div>
+      <button onclick="openSmallWindow('_self')">Open '_self'</button>
+      <p>
+        <strong>_self</strong> loads the URL in the current browsing context,
+        replacing this document — equivalent to navigating normally in the same
+        tab or frame.
+      </p>
+    </div>
+
+    <div>
+      <button onclick="openSmallWindow('_top')">Open '_top'</button>
+      <p>
+        <strong>_top</strong> targets the topmost browsing context, breaking out
+        of any nested frames and loading the URL into the top-level window. If
+        the current document is already top-level, <code>_top</code> behaves
+        like <code>_self</code>.
+      </p>
+    </div>
+
+    <div>
+      <button onclick="openSmallWindow('myWindow')">
+        Open named target 'myWindow'
+      </button>
+      <p>
+        <strong>Named target: "myWindow"</strong> opens or reuses a window/tab
+        with the exact name <code>myWindow</code>. Repeated calls with this same
+        name will reuse and focus that same context instead of creating new ones
+        — useful for popups you want to update rather than multiply.
+      </p>
+    </div>
+
+    <section aria-labelledby="targets-heading">
+      <h2 id="targets-heading">Notes</h2>
+      <p>
+        Notes for this example: calling
+        <code>window.open('', target, 'width=400,height=300')</code> opens an
+        <code>about:blank</code> document in the chosen context and then uses
+        <code>document.write</code> to populate it. This works when the opened
+        context is same-origin or when you're writing immediately to the
+        newly-created blank document. You cannot script or inspect cross-origin
+        pages due to the same-origin policy. Browser popup blockers and user
+        preferences can also change whether a new window or tab is created.
+      </p>
+
+      <p>
+        Best practice: prefer named targets for reusable windows, and for
+        <code>_blank</code> use <code>rel="noopener noreferrer"</code> or
+        explicitly null out <code>opener</code> when using
+        <code>window.open</code> to avoid exposing the opener page to the new
+        page.
+      </p>
+    </section>
+  </body>
+</html>
