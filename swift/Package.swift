@@ -3,14 +3,18 @@
 
 import PackageDescription
 
+let examples = [
+  "non-copyable",
+  "pack-iteration",
+  "task-group",
+]
+
+let targets: [Target] = examples.map { .executableTarget(name: $0) }
+let products: [Product] = examples.map { .executable(name: $0, targets: [$0]) }
+
 let package = Package(
   name: "SwiftExamples",
-  products: [
-    .executable(name: "non-copyable", targets: ["non-copyable"]),
-    .executable(name: "pack-iteration", targets: ["pack-iteration"]),
-  ],
-  targets: [
-    .executableTarget(name: "non-copyable"),
-    .executableTarget(name: "pack-iteration"),
-  ],
+  platforms: [.macOS(.v15)],
+  products: products,
+  targets: targets
 )
