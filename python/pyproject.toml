@@ -1,0 +1,13 @@
+[project]
+name = "python-examples"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = ["torch>=2.9.0"]
+
+[tool.ruff]
+indent-width = 2
+
+[tool.ruff.format]
+quote-style = "single"
