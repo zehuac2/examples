@@ -1,83 +1,104 @@
-import torch
-import torch.nn.functional as F
 import argparse
 
+import lightning as L
+import torch
+from torch.utils.data import DataLoader, TensorDataset
 
-class AddModel(torch.nn.Module):
-  def __init__(self):
+
+class AddLitModule(L.LightningModule):
+  def __init__(self, lr: float = 0.01):
     super().__init__()
+    self.save_hyperparameters()
+    self.lr = lr
     self.fc1 = torch.nn.Linear(2, 1, bias=False)
+    self.criterion = torch.nn.MSELoss()
 
-  def forward(self, x):
-    x = self.fc1(x)
-    return x
+  def forward(self, x: torch.Tensor) -> torch.Tensor:
+    return self.fc1(x)
+
+  def training_step(self, batch, batch_idx: int):
+    data, targets = batch
+    preds = self(data)
+    loss = self.criterion(preds, targets)
+    self.log('train_loss', loss, prog_bar=True)
+    return loss
+
+  def validation_step(self, batch, batch_idx: int):
+    data, targets = batch
+    preds = self(data)
+    loss = self.criterion(preds, targets)
+    self.log('val_loss', loss, prog_bar=True)
+
+  def configure_optimizers(self):
+    return torch.optim.Adam(self.parameters(), lr=self.lr)
 
 
-def generate_data():
-  # Generate data for addition
-  data = torch.randint(0, 100, (100, 2), dtype=torch.float32)
-  labels = torch.sum(data, 1, keepdim=True)
+class AddDataModule(L.LightningDataModule):
+  def __init__(self, batch_size: int = 32, dataset_size: int = 100):
+    super().__init__()
+    self.batch_size = batch_size
+    self.dataset_size = dataset_size
+    self.train_dataset = None
+    self.val_dataset = None
 
-  # Shuffle and split data
-  shuffled_indices = torch.randperm(data.size(0))
-  data = data[shuffled_indices]
-  labels = labels[shuffled_indices]
+  def setup(self, stage: str | None = None):
+    data = torch.randint(0, 100, (self.dataset_size, 2), dtype=torch.float32)
+    labels = torch.sum(data, 1, keepdim=True)
 
-  split_idx = int(0.8 * data.size(0))
-  train_data, val_data = data[:split_idx], data[split_idx:]
-  train_labels, val_labels = labels[:split_idx], labels[split_idx:]
+    shuffled_indices = torch.randperm(data.size(0))
+    data = data[shuffled_indices]
+    labels = labels[shuffled_indices]
 
-  return train_data, train_labels, val_data, val_labels
+    split_idx = int(0.8 * data.size(0))
+    train_data, val_data = data[:split_idx], data[split_idx:]
+    train_labels, val_labels = labels[:split_idx], labels[split_idx:]
 
+    self.train_dataset = TensorDataset(train_data, train_labels)
+    self.val_dataset = TensorDataset(val_data, val_labels)
 
-def train(model, train_data, train_labels, val_data, val_labels, epochs=1200, lr=0.01):
-  criterion = torch.nn.MSELoss()
-  optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+  def train_dataloader(self):
+    if self.train_dataset is None:
+      raise RuntimeError('train_dataset not initialized; call setup() before train_dataloader().')
+    return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
 
-  for epoch in range(epochs):
-    # Training
-    model.train()
-    optimizer.zero_grad()
-    train_outputs = model(train_data)
-    train_loss = criterion(train_outputs, train_labels)
-    train_loss.backward()
-    optimizer.step()
-
-    # Validation
-    model.eval()
-    with torch.no_grad():
-      val_outputs = model(val_data)
-      val_loss = criterion(val_outputs, val_labels)
-
-    if (epoch + 1) % 100 == 0:
-      print(
-        f'Epoch [{epoch + 1}/{epochs}], Train Loss: {train_loss.item():.4f}, Val Loss: {val_loss.item():.4f}'
-      )
+  def val_dataloader(self):
+    if self.val_dataset is None:
+      raise RuntimeError('val_dataset not initialized; call setup() before val_dataloader().')
+    return DataLoader(self.val_dataset, batch_size=self.batch_size)
 
 
 def parse_args():
-  parser = argparse.ArgumentParser(description='Add Neural Network')
-  parser.add_argument(
-    '--device', type=str, default='cpu', help='Device to run on (cpu, cuda, mps)'
-  )
+  parser = argparse.ArgumentParser(description='Add Neural Network with PyTorch Lightning')
+  parser.add_argument('--device', type=str, default='cpu', help='cpu | cuda | mps')
+  parser.add_argument('--max_epochs', type=int, default=400, help='Number of training epochs')
+  parser.add_argument('--batch_size', type=int, default=32, help='Mini-batch size')
+  parser.add_argument('--dataset_size', type=int, default=100, help='Number of examples to generate')
+  parser.add_argument('--lr', type=float, default=0.01, help='Learning rate')
   return parser.parse_args()
 
 
 def main():
   args = parse_args()
-  device = torch.device(args.device)
+  print(f'Training on accelerator {args.device}')
 
-  print(f'Training on device {device}')
+  L.seed_everything(0)
 
-  torch.random.manual_seed(0)
-  model = AddModel()
-  model.to(device)
-  train_data, train_labels, val_data, val_labels = generate_data()
-  train_data, train_labels = train_data.to(device), train_labels.to(device)
-  val_data, val_labels = val_data.to(device), val_labels.to(device)
-  train(model, train_data, train_labels, val_data, val_labels)
+  model = AddLitModule(lr=args.lr)
+  data_module = AddDataModule(batch_size=args.batch_size, dataset_size=args.dataset_size)
+
+  trainer = L.Trainer(
+    accelerator=args.device,
+    devices=1,
+    max_epochs=args.max_epochs,
+    logger=False,
+    enable_checkpointing=False,
+    enable_model_summary=False,
+  )
+
+  trainer.fit(model, data_module)
 
   model.eval()
+  device = trainer.strategy.root_device
   test_data = torch.tensor(
     [[10, 20], [5, 5], [1, 2], [45, 32], [1000, 100]], dtype=torch.float32
   ).to(device)
