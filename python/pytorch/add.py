@@ -58,21 +58,31 @@ class AddDataModule(L.LightningDataModule):
 
   def train_dataloader(self):
     if self.train_dataset is None:
-      raise RuntimeError('train_dataset not initialized; call setup() before train_dataloader().')
+      raise RuntimeError(
+        'train_dataset not initialized; call setup() before train_dataloader().'
+      )
     return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
 
   def val_dataloader(self):
     if self.val_dataset is None:
-      raise RuntimeError('val_dataset not initialized; call setup() before val_dataloader().')
+      raise RuntimeError(
+        'val_dataset not initialized; call setup() before val_dataloader().'
+      )
     return DataLoader(self.val_dataset, batch_size=self.batch_size)
 
 
 def parse_args():
-  parser = argparse.ArgumentParser(description='Add Neural Network with PyTorch Lightning')
+  parser = argparse.ArgumentParser(
+    description='Add Neural Network with PyTorch Lightning'
+  )
   parser.add_argument('--device', type=str, default='cpu', help='cpu | cuda | mps')
-  parser.add_argument('--max_epochs', type=int, default=400, help='Number of training epochs')
+  parser.add_argument(
+    '--max_epochs', type=int, default=400, help='Number of training epochs'
+  )
   parser.add_argument('--batch_size', type=int, default=32, help='Mini-batch size')
-  parser.add_argument('--dataset_size', type=int, default=100, help='Number of examples to generate')
+  parser.add_argument(
+    '--dataset_size', type=int, default=100, help='Number of examples to generate'
+  )
   parser.add_argument('--lr', type=float, default=0.01, help='Learning rate')
   return parser.parse_args()
 
@@ -84,7 +94,9 @@ def main():
   L.seed_everything(0)
 
   model = AddLitModule(lr=args.lr)
-  data_module = AddDataModule(batch_size=args.batch_size, dataset_size=args.dataset_size)
+  data_module = AddDataModule(
+    batch_size=args.batch_size, dataset_size=args.dataset_size
+  )
 
   trainer = L.Trainer(
     accelerator=args.device,
