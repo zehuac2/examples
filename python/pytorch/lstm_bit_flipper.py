@@ -4,11 +4,14 @@
 Ported from TensorFlow implementation.
 """
 
+import os
 import numpy as np
 import torch
 import torch.nn as nn
-import pytorch_lightning as pl
+import lightning as L
 from torch.utils.data import DataLoader, TensorDataset
+
+NUM_WORKERS = os.cpu_count() or 1
 
 
 def generate_data(
@@ -43,7 +46,7 @@ def test_generate_data() -> None:
   print('Targets:', targets)
 
 
-class SequenceFlipper(pl.LightningModule):
+class SequenceFlipper(L.LightningModule):
   """LSTM model that learns to flip binary sequences."""
 
   def __init__(self, hidden_size: int = 64, dropout: float = 0.2):
@@ -88,7 +91,7 @@ class SequenceFlipper(pl.LightningModule):
     return torch.optim.Adam(self.parameters())
 
 
-def train_sequence_flipper() -> tuple[SequenceFlipper, pl.Trainer]:
+def train_sequence_flipper() -> tuple[SequenceFlipper, L.Trainer]:
   """Create and train the model."""
   # Generate training data
   X_train, y_train = generate_data(1000)
@@ -103,12 +106,20 @@ def train_sequence_flipper() -> tuple[SequenceFlipper, pl.Trainer]:
   train_dataset = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train))
   val_dataset = TensorDataset(torch.from_numpy(X_val), torch.from_numpy(y_val))
 
-  train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-  val_loader = DataLoader(val_dataset, batch_size=32)
+  train_loader = DataLoader(
+    train_dataset,
+    batch_size=32,
+    shuffle=True,
+    persistent_workers=True,
+    num_workers=NUM_WORKERS,
+  )
+  val_loader = DataLoader(
+    val_dataset, batch_size=32, persistent_workers=True, num_workers=NUM_WORKERS
+  )
 
   # Create model and trainer
   model = SequenceFlipper()
-  trainer = pl.Trainer(max_epochs=20, enable_progress_bar=True, logger=False)
+  trainer = L.Trainer(max_epochs=20, enable_progress_bar=True, logger=False)
 
   # Train the model
   trainer.fit(model, train_loader, val_loader)
@@ -131,10 +142,10 @@ if __name__ == '__main__':
   # Train the model
   model, trainer = train_sequence_flipper()
 
-  print(model)
-
-  # Test the model
-  test_sequence = np.array([[1], [0], [1], [1], [0]], dtype=np.float32)
-  result = predict_sequence(model, test_sequence)
-  print('Input sequence:', test_sequence.flatten())
-  print('Flipped sequence:', result[0].flatten())
+  while True:
+    test_sequence = np.array(
+      input('sequence (comma separated): ').split(','), dtype=np.float32
+    ).reshape(-1, 1)
+    result = predict_sequence(model, test_sequence)
+    print('Input sequence:', test_sequence.flatten())
+    print('Flipped sequence:', result[0].flatten())
